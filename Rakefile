@@ -39,6 +39,7 @@ namespace :db do
 
     require 'json'
 
+
     year_data = {}
     data = JSON(File.read('./data.json'))
     names = ['East', 'West', 'Midwest', 'South', 'National']
@@ -53,6 +54,18 @@ namespace :db do
           team_name = team_name.join('').strip
 
           data[year][name][idx] = {name: team_name, score: score}
+        end
+      end
+    end
+
+    #Collect Teams
+    names = ['East', 'West', 'Midwest', 'South']
+    data.each do |year, year_data|
+      names.each do |name|
+        year_data[name].each do |record|
+          unless team = Team.find_by(name: record[:name])
+            team = Team.create({name: record[:name]})
+          end
         end
       end
     end
@@ -73,8 +86,22 @@ namespace :db do
     data.each do |year, year_data|
       names.each do |name|
         first_round.each do |game_idx|
-          year_data[name][game_idx[0]][:game] = 1 if year_data[name][game_idx[0]]
-          year_data[name][game_idx[1]][:game] = 1 if year_data[name][game_idx[1]]
+          year_data[name][game_idx[0]][:game] = 1 if year_data[name][game_idx[0]] #team 1 round 1
+          year_data[name][game_idx[1]][:game] = 1 if year_data[name][game_idx[1]] #team 2 round 1
+          team_a_data = year_data[name][game_idx[0]]
+          team_b_data = year_data[name][game_idx[1]]
+          if team_a_data && team_b_data   #if score
+            team_a = Team.find_by({name: team_a_data[:name]})
+            team_b = Team.find_by({name: team_b_data[:name]})
+            Game.create({  #create game table data
+              team_a_id: team_a.id, #team a = team a
+              team_b_id: team_b.id,
+              score_a: team_a_data[:score], #team a score
+              score_b: team_b_data[:score],
+              round: 1,
+              year: year
+            })
+          end
         end
       end
     end
@@ -92,6 +119,20 @@ namespace :db do
         second_round.each do |game_idx|
           year_data[name][game_idx[0]][:game] = 2 if year_data[name][game_idx[0]]
           year_data[name][game_idx[1]][:game] = 2 if year_data[name][game_idx[1]]
+          team_a_data = year_data[name][game_idx[0]]
+          team_b_data = year_data[name][game_idx[1]]
+          if team_a_data && team_b_data
+            team_a = Team.find_by({name: team_a_data[:name]})
+            team_b = Team.find_by({name: team_b_data[:name]})
+            Game.create({
+              team_a_id: team_a.id,
+              team_b_id: team_b.id,
+              score_a: team_a_data[:score],
+              score_b: team_b_data[:score],
+              round: 2,
+              year: year
+            })
+          end
         end
       end
     end
@@ -107,6 +148,20 @@ namespace :db do
         sweet_sixteen.each do |game_idx|
           year_data[name][game_idx[0]][:game] = 3 if year_data[name][game_idx[0]]
           year_data[name][game_idx[1]][:game] = 3 if year_data[name][game_idx[1]]
+          team_a_data = year_data[name][game_idx[0]]
+          team_b_data = year_data[name][game_idx[1]]
+          if team_a_data && team_b_data
+            team_a = Team.find_by({name: team_a_data[:name]})
+            team_b = Team.find_by({name: team_b_data[:name]})
+            Game.create({
+              team_a_id: team_a.id,
+              team_b_id: team_b.id,
+              score_a: team_a_data[:score],
+              score_b: team_b_data[:score],
+              round: 3,
+              year: year
+            })
+          end
         end
       end
     end
@@ -121,6 +176,20 @@ namespace :db do
         elite_eight.each do |game_idx|
           year_data[name][game_idx[0]][:game] = 4 if year_data[name][game_idx[0]]
           year_data[name][game_idx[1]][:game] = 4 if year_data[name][game_idx[1]]
+          team_a_data = year_data[name][game_idx[0]]
+          team_b_data = year_data[name][game_idx[1]]
+          if team_a_data && team_b_data
+            team_a = Team.find_by({name: team_a_data[:name]})
+            team_b = Team.find_by({name: team_b_data[:name]})
+            Game.create({
+              team_a_id: team_a.id,
+              team_b_id: team_b.id,
+              score_a: team_a_data[:score],
+              score_b: team_b_data[:score],
+              round: 4,
+              year: year
+            })
+          end
         end
       end
     end
@@ -137,6 +206,20 @@ namespace :db do
         final_four.each do |game_idx|
           year_data[name][game_idx[0]][:game] = 5 if year_data[name][game_idx[0]]
           year_data[name][game_idx[1]][:game] = 5 if year_data[name][game_idx[1]]
+          team_a_data = year_data[name][game_idx[0]]
+          team_b_data = year_data[name][game_idx[1]]
+          if team_a_data && team_b_data
+            team_a = Team.find_by({name: team_a_data[:name]})
+            team_b = Team.find_by({name: team_b_data[:name]})
+            Game.create({
+              team_a_id: team_a.id,
+              team_b_id: team_b.id,
+              score_a: team_a_data[:score],
+              score_b: team_b_data[:score],
+              round: 5,
+              year: year
+            })
+          end
         end
       end
     end
@@ -151,40 +234,48 @@ namespace :db do
         championship.each do |game_idx|
           year_data[name][game_idx[0]][:game] = 6 if year_data[name][game_idx[0]]
           year_data[name][game_idx[1]][:game] = 6 if year_data[name][game_idx[1]]
-        end
-      end
-    end
-
-
-
-
-    #Collect Teams
-    names = ['East', 'West', 'Midwest', 'South']
-    data.each do |year, year_data|
-      names.each do |name|
-        year_data[name].each do |record|
-          unless team = Team.find_by(name: record[:name])
-            team = Team.create({name: record[:name]})
+          team_a_data = year_data[name][game_idx[0]]
+          team_b_data = year_data[name][game_idx[1]]
+          if team_a_data && team_b_data
+            team_a = Team.find_by({name: team_a_data[:name]})
+            team_b = Team.find_by({name: team_b_data[:name]})
+            Game.create({
+              team_a_id: team_a.id,
+              team_b_id: team_b.id,
+              score_a: team_a_data[:score],
+              score_b: team_b_data[:score],
+              round: 6,
+              year: year
+            })
           end
         end
       end
     end
+
+
 
 
     #Collect Games
-    game_idx = ['1', '2', '3', '4']
-    data.each do |year, year_data|
-      game_idx.each do |name|
-        year_data[game_idx].each do |record|
-          unless game = Game.find_by(game_idx: record[:game_idx])
-            game = Game.create({game_idx: record[:game_idx]})
-          end
-        end
-      end
-    end
+    # scores = []
+    # data.each do |year, year_data|
+    #   scores.each do |score|
+    #     year_data[score].each do |record|
+    #       puts team.scan(/(\d+)/).flatten.first
+    #       scores.push(team.scan(/(\d+)/).flatten.first)
+    #
+    #       unless game = Game.find_by(score: record[:score])
+    #         game = Game.create({score: record[:score]})
+    #
+    #       end
+    #     end
+    #   end
+    # end
+    #
+
+    # puts scores
+#iterate and then create
 
   end
-
 
 
   desc "Empty Database"

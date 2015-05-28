@@ -70,3 +70,48 @@ get '/api/seasons/:id' do
   season = team.find(id)
   season.to_json
 end
+
+##################################
+get '/api/games' do
+  content_type :json
+  games = Game.all
+  games.to_json
+end
+
+get '/api/games/:id' do
+  content_type :json
+  id = params[:id].to_i
+  game = game.find(id)
+  game.to_json
+end
+
+
+post '/api/games' do
+  content_type :json
+  game = team.create(params[:game])
+  game.to_json
+end
+
+
+patch '/api/games/:id' do
+  content_type :json
+  id = params[:id].to_i
+  game = game.find(id)
+  game.update(params[:game])
+  game.to_json
+end
+put '/api/games/:id' do
+  content_type :json
+  id = params[:id].to_i
+  game = game.find(id)
+  game.update(params[:game])
+  game.to_json
+end
+
+
+delete '/api/games/:id' do
+  content_type :json
+  id = params[:id].to_i
+  game.delete(id)
+  {message: 'Success'}.to_json
+end
