@@ -1,5 +1,6 @@
 
 require 'json'
+year_data = {}
 data = JSON(File.read('./data.json'))
 names = ['East', 'West', 'Midwest', 'South', 'National']
 
@@ -114,3 +115,25 @@ data.each do |year, year_data|
     end
   end
 end
+
+
+
+
+#Collect Teams
+names = ['East', 'West', 'Midwest', 'South']
+data.each do |year, year_data|
+  names.each do |name|
+    year_data[name].each do |record|
+      unless team = Team.where(name: record[:name])
+        team = Team.create({name: record[:name]})
+      end
+    end
+  end
+end
+
+######################
+#ary.uniq{|x| x.name_id}
+
+#(0..30).each do |i|
+#  puts
+#end

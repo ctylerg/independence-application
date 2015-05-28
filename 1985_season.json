@@ -1,0 +1,34 @@
+var teams =
+/*{"1985":{"url":"http://www.sports-reference.com/cbb/postseason/1985-ncaa.html","East":["Georgetown 68","Georgetown 63","Georgetown 65","Georgetown 60","Georgetown","Lehigh 43","Temple 60","Temple 46","Virginia Tech 57","Southern Methodist 85","Southern Methodist 57","Loyola (IL) 53","Old Dominion 68","Loyola (IL) 59","Loyola (IL) 70","Iona 58","Georgia 67","Georgia 58","Illinois 53","Georgia Tech 54","Wichita State 59","Illinois 76","Illinois 74","Northeastern 57","Syracuse 70","Syracuse 53","Georgia Tech 61","DePaul 65","Georgia Tech 65","Georgia Tech 70","Mercer 58"],"West":["St. John's (NY) 83","St. John's (NY) 68","St. John's (NY) 86","St. John's (NY) 69","St. John's (NY)","Southern 59","Iowa 54","Arkansas 65","Arkansas 63","Washington 58","Kentucky 64","Kentucky 70","Kentucky 66","Nevada-Las Vegas 85","Nevada-Las Vegas 61","San Diego State 80","Tulsa 75","Texas-El Paso 73","North Carolina State 61","North Carolina State 60","Texas-El Paso 79","North Carolina State 65","North Carolina State 86","Nevada 56","Alabama 50","Alabama 63","Alabama 55","Arizona 41","Virginia Commonwealth 81","Virginia Commonwealth 59","Marshall 65"],"Midwest":["Oklahoma 96","Oklahoma 75","Oklahoma 86","Oklahoma 61","Memphis","North Carolina A&T 83","Southern California 55","Illinois State 69","Illinois State 58","Louisiana Tech 78","Louisiana Tech 79","Louisiana Tech 84","Pittsburgh 54","Ohio State 75","Ohio State 67","Iowa State 64","Texas Tech 53","Boston College 74","Boston College 57","Memphis 63","Boston College 55","Duke 75","Duke 73","Pepperdine 62","Alabama-Birmingham 70","Alabama-Birmingham 66","Memphis 59","Michigan State 68","Memphis 67","Memphis 67","Pennsylvania 55"],"South":[],"National":["Villanova 52","Villanova 66","Villanova","Memphis 45","St. John's (NY) 59","Georgetown 64","Georgetown 77"]};*/
+
+
+
+
+var uniqueNames = {};
+$.each(teams, function() {
+  uniqueNames[this.group] = this.value;
+  puts uniqueNames
+});
+
+
+
+
+
+
+require 'json'
+data = JSON(File.read('./data.json'))
+names = ['East', 'West', 'Midwest', 'South', 'National']
+
+data.each do |year, year_data|
+  names.each do |name|
+    year_data[name].each_with_index do |team, idx|
+      score = team.scan(/(\d+)/).flatten.first
+
+      team_name = team.chars
+      team_name.pop(score.length) if score
+      team_name = team_name.join('').strip
+
+      data[year][name][idx] = {name: team_name, score: score}
+    end
+  end
+end
