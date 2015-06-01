@@ -1,0 +1,32 @@
+<html>
+  <head>
+    <title>Old Skool Pool</title>
+      <link rel="stylesheet" href="/stylesheets/style.css">
+      <script src="https://ajax.googleapis.com/ajax/libs/jquery/2.1.3/jquery.min.js"></script>
+  </head>
+  <body>
+
+
+
+  <script charset="utf-8">
+
+     function pickTeam(){
+       $.ajax({
+         url: '/api/seasons/random',
+         success: function(data){
+           var tourney = data['game'];
+           $('body');
+         }  // success
+       }); // ajax
+     } //
+     // When the doucment is ready
+     $(document).ready(function(){
+       setInterval(pickTeam, 1000);
+     })
+     //  Perform this task at some interval
+
+
+
+   </script>
+  </body>
+</html>

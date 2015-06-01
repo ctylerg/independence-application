@@ -58,18 +58,13 @@ end
 
 #################
 
-get '/api/seasons' do
+get '/api/seasons/random' do
   content_type :json
-  seasons = Season.all
-  seasons.to_json
-end
-
-get '/api/seasons/:id' do
-  content_type :json
-  id = params[:id].to_i
-  season = team.find(id)
+  season = Game.season(rand(2000..2015)).order(:round)
   season.to_json
 end
+
+
 
 ##################################
 get '/api/games' do
