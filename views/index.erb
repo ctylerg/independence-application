@@ -5,28 +5,110 @@
       <script src="https://ajax.googleapis.com/ajax/libs/jquery/2.1.3/jquery.min.js"></script>
   </head>
   <body>
+    <div id="bball">
+      <ul class ="round1">
+      </ul>
+      <ul class ="round2">
+      </ul>
+      <ul class ="round3">
+      </ul>
+      <ul class ="round4">
+      </ul>
+      <ul class ="round5">
+      </ul>
+      <ul class ="round6">
+      </ul>
+    </div>
+
+    <script>
+
+    var app = app || {};
+    $.ajax({
+      url: '/api/teams',
+      success: function(data){
+        app.teams = data;
+      }  // success
+    }); // ajax
 
 
+    app.pickTeam = function (){
+     $.ajax({
+       url: '/api/seasons/random',  //pick a random year
+       success: function(data){
 
-  <script charset="utf-8">
+         var round1 = [];
+         var round2 = [];
+         var round3 = [];
+         var round4 = [];
+         var round5 = [];
+         var round6 = [];
 
-     function pickTeam(){
-       $.ajax({
-         url: '/api/seasons/random',
-         success: function(data){
-           var tourney = data['game'];
-           $('body');
-         }  // success
-       }); // ajax
-     } //
+         app.tourney = [];
+         for (var selection in data) {   //loop through all the data
+           var game = data[selection];
+           game.team_a = findTeamById(game['team_a_id']);  //get team name
+           game.team_b = findTeamById(game['team_b_id']);
+           app.tourney.push(game);
+
+           switch(game.round) {
+            case 1:                //breaks out games into rounds
+              round1.push(game);
+            break;
+            case 2:
+              round2.push(game);
+            break;
+            case 3:
+            round3.push(game);
+            break;
+            case 4:
+            round4.push(game);
+            break;
+            case 5:
+            round5.push(game);
+            break;
+            case 6:
+            round6.push(game);
+            break;
+           }
+
+
+           //var newRound = $.inArray(game.round, rounds); // returns true or false
+
+         }
+
+         console.log(round6);
+
+         for (var i = 0; i < app.tourney.length; i++) {
+
+           $('ul').append(
+             '<li>' + app.tourney[i].team_a + '</li>' + //appends all the games for a yr
+             '<li>' + app.tourney[i].team_b + '</li>'
+           )
+         }
+        //  var t = app.tourney[0].team_a;
+        //  $('li').append(t);
+        //  var y = app.tourney[0].team_b;
+        // $('li').append(y);
+
+         console.log(app.tourney);
+       }  // success
+     }); // ajax
+    }
+
+    function findTeamById(id) {
+      for (var team in app.teams) {
+        if (app.teams[team].id == id) {
+          return app.teams[team].name;
+        }
+      }
+    }
+
      // When the doucment is ready
      $(document).ready(function(){
-       setInterval(pickTeam, 1000);
+       //setInterval(pickTeam, 1000);
+       app.pickTeam()
      })
-     //  Perform this task at some interval
 
-
-
-   </script>
+ </script>
   </body>
 </html>

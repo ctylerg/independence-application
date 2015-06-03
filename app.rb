@@ -12,6 +12,11 @@ require './models/game'
 require './models/season'
 
 ######################
+
+get '/' do
+  erb :index
+end
+
 get '/api/teams' do
   content_type :json
   teams = Team.all
