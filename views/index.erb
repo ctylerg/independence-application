@@ -10,8 +10,8 @@
   <meta name="author" content="Tyler Geneva The Programmer">
   <script src="javascripts/jquery.min.js"></script>
   <script src="javascripts/bootstrap.min.js"></script>
-  <link rel="stylesheet" href="stylesheets/bootstrap.min.css">
-  <link rel="stylesheet" href="/stylesheets/styles.scss">
+  <link rel="stylesheet" href="/stylesheets/bootstrap.min.css">
+  <link rel="stylesheet" href="/stylesheets/style.css">
 
 
   </head>
@@ -119,19 +119,22 @@
 
            $('#round1').append(
             //  '<h1> ROUND ONE </h1>' +
-             '<li>' + round1[i].team_a + '</li>' + //appends all the games for a yr
+             $('<li>' + round1[i].team_a + '</li>' + //appends all the games for a yr
              '<li>' + round1[i].team_b + '</li><br>'
            )
+           ).fadeIn(5000)*Math.random();
          }
 
          for (var i = 0; i < round2.length; i++) {
 
            $('#round2').append(
-             '<h1> ROUND Two </h1>' +
+            $('<h1> ROUND Two </h1>' +
              '<li>' + round2[i].team_a + '</li>' + //appends all the games for a yr
              '<li>' + round2[i].team_b + '</li><br>'
-           )
+            )
+         ).fadeIn(Math.random()*5000);
          }
+
 
          for (var i = 0; i < round3.length; i++) {
 
@@ -187,7 +190,12 @@
 
      // When the doucment is ready
      $(document).ready(function(){
-        setTimeout(app.pickTeam, 2000);
+        setTimeout(app.pickTeam, 1000);
+        $('#round1').each(function(i) {
+
+   $(this).delay( Math.random()*500+500 ).fadeIn();
+
+});
 
       //  app.pickTeam().slideUp( 300 ).delay( 2000 ).fadeIn( 400 );
      })
