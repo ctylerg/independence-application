@@ -16,27 +16,27 @@
 
   </head>
   <body>
-    <div id="round1">
+    <div id="round1" class='round'>
 
     </div>
 
-    <div id="round2">
+    <div id="round2" class='round'>
 
     </div>
 
-    <div id="round3">
+    <div id="round3" class='round'>
 
     </div>
 
-    <div id="round4">
+    <div id="round4" class='round'>
 
     </div>
 
-    <div id="round5">
+    <div id="round5" class='round'>
 
     </div>
 
-    <div id="round6">
+    <div id="round6" class='round'>
 
     </div>
 
@@ -94,16 +94,15 @@
             break;
            }
 
-
-           //var newRound =   $.inArray(game.round, rounds); // returns true or false
+           var rounds = [round1, round2, round3, round4, round5, round6];
 
          }
-         console.log(round1);
-         console.log(round2);
-         console.log(round3);
-         console.log(round4);
-         console.log(round5);
-         console.log(round6);
+        //  console.log(round1);
+        //  console.log(round2);
+        //  console.log(round3);
+        //  console.log(round4);
+        //  console.log(round5);
+        //  console.log(round6);
 
         //  console.log(app.tourney)
 
@@ -115,61 +114,75 @@
         //    )
         //  }
 
-         for (var i = 0; i < round1.length; i++) {
+         for (var i = 0; i < rounds.length; i++) {
+           var round = rounds[i];
+           for (var n = 0; n < round.length; n++) {
+             var game = round[n];
+             var html = $('<div><p>' + game.team_a + '</p><p>' + game.team_b + '</p></div>');
+             html.addClass('game');
+             html.hide();
 
-           $('#round1').append(
-            //  '<h1> ROUND ONE </h1>' +
-             $('<li>' + round1[i].team_a + '</li>' + //appends all the games for a yr
-             '<li>' + round1[i].team_b + '</li><br>'
-           )
-           ).fadeIn(5000)*Math.random();
+             (function (){
+               var locali = i;
+               var localhtml = html;
+               setTimeout(function(){
+                 $('#round'+locali).append(localhtml);
+                 localhtml.fadeIn(1000);
+               }, (i*2000));
+             })();
+
+           }
          }
 
-         for (var i = 0; i < round2.length; i++) {
 
-           $('#round2').append(
-            $('<h1> ROUND Two </h1>' +
-             '<li>' + round2[i].team_a + '</li>' + //appends all the games for a yr
-             '<li>' + round2[i].team_b + '</li><br>'
-            )
-         ).fadeIn(Math.random()*5000);
-         }
-
-
-         for (var i = 0; i < round3.length; i++) {
-
-           $('#round3').append(
-             '<h1> ROUND Three </h1>' +
-             '<li>' + round3[i].team_a + '</li>' +
-             '<li>' + round3[i].team_b + '</li><br>'
-           )
-         }
-
-         for (var i = 0; i < round4.length; i++) {
-
-           $('#round4').append(
-             '<h1> ROUND Four </h1>' +
-             '<li>' + round4[i].team_a + '</li>' + //appends all the games for a yr
-             '<li>' + round4[i].team_b + '</li><br>'
-           )
-         }
-
-         for (var i = 0; i < round5.length; i++) {
-
-           $('#round5').append(
-             '<h1> ROUND Five </h1>' +
-             '<li>' + round5[i].team_a + '</li>' + //appends all the games for a yr
-             '<li>' + round5[i].team_b + '</li><br>'
-           )
-          }
-           for (var i = 0; i < round6.length; i++) {
-
-             $('#round6').append(
-               '<h1> ROUND Six </h1>' +
-               '<li>' + round6[i].team_a + '</li>' + //appends all the games for a yr
-               '<li>' + round6[i].team_b + '</li><br>'
-             )
-         }
+         //
+         //
+        //  for (var i = 0; i < round2.length; i++) {
+         //
+        //    $('#round2').append(
+        //     $('<h1> ROUND Two </h1>' +
+        //      '<li>' + round2[i].team_a + '</li>' + //appends all the games for a yr
+        //      '<li>' + round2[i].team_b + '</li><br>'
+        //     )
+        //  ).hide().fadeIn(Math.random()*5000);
+        //  }
+         //
+         //
+        //  for (var i = 0; i < round3.length; i++) {
+         //
+        //      '#round3').append(
+        //      $('<h1> ROUND Three </h1>' +
+        //      '<li>' + round3[i].team_a + '</li>' +
+        //      '<li>' + round3[i].team_b + '</li><br>'
+        //     )
+        //    ).hide().fadeIn(Math.random()*5000);
+        //  }
+         //
+        //  for (var i = 0; i < round4.length; i++) {
+         //
+        //    $('#round4').append(
+        //      '<h1> ROUND Four </h1>' +
+        //      '<li>' + round4[i].team_a + '</li>' + //appends all the games for a yr
+        //      '<li>' + round4[i].team_b + '</li><br>'
+        //    )
+        //  }
+         //
+        //  for (var i = 0; i < round5.length; i++) {
+         //
+        //    $('#round5').append(
+        //      '<h1> ROUND Five </h1>' +
+        //      '<li>' + round5[i].team_a + '</li>' + //appends all the games for a yr
+        //      '<li>' + round5[i].team_b + '</li><br>'
+        //    )
+        //   }
+        //    for (var i = 0; i < round6.length; i++) {
+         //
+        //      $('#round6').append(
+        //        '<h1> ROUND Six </h1>' +
+        //        '<li>' + round6[i].team_a + '</li>' + //appends all the games for a yr
+        //        '<li>' + round6[i].team_b + '</li><br>'
+        //      )
+        //  }
         //  var t = app.tourney[0].team_a;
         //  $('li').append(t);
         //  var y = app.tourney[0].team_b;
@@ -191,11 +204,11 @@
      // When the doucment is ready
      $(document).ready(function(){
         setTimeout(app.pickTeam, 1000);
-        $('#round1').each(function(i) {
-
-   $(this).delay( Math.random()*500+500 ).fadeIn();
-
-});
+//         $('#round1').each(function(i) {
+//
+//    $(this).delay(Math.random()*500+500 ).fadeIn();
+//
+// });
 
       //  app.pickTeam().slideUp( 300 ).delay( 2000 ).fadeIn( 400 );
      })
