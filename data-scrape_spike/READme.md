@@ -76,3 +76,27 @@ end
 
 
 Getting the json data into a usable form into to the PSQL was a major complication that took some time.  In the Quality Control stage I realized that some of the data didn't pull in since the name of the region changed.  I then had to go and modify the scraper, in order to pull the full data.
+
+Once the data was there getting each game to render correctly was tricky...Some javascript was used to loop through each round and get the teams to match up.  The rounds then had to render in slowly to give the user a chance to guess the year.  
+
+```javascript
+for (var i = 0; i < rounds.length; i++) {
+  var round = rounds[i];
+  for (var n = 0; n < round.length; n++) {
+    var game = round[n];               //get game matchups
+    var html = $('<div><p>' + game.team_a + '</p><p>' + game.team_b + '</p></div>');
+    html.addClass('game'); //add Class to games
+    html.hide(); //makes games not shift as other games come in
+
+    (function (){      //bring in round by round but delayed
+      var locali = i;
+      var localhtml = html;
+      setTimeout(function(){
+        $('#round'+locali).append(localhtml);
+        localhtml.fadeIn(2000);
+      }, (i*3000));
+    })();
+
+  }
+}
+```

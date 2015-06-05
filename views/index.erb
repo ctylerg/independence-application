@@ -3,13 +3,13 @@
     <title>Old Skool Pool</title>
       <!--<link rel="stylesheet" href="/stylesheets/style.css">
       <script src="https://ajax.googleapis.com/ajax/libs/jquery/2.1.3/jquery.min.js"></script> -->
-      <meta charset="utf-8">
+  <meta charset="utf-8">
   <meta http-equiv="X-UA-Compatible" content="IE=edge">
   <meta name="viewport" content="width=device-width,initial-scale=1">
   <meta name="description" content="Old Skool Pool, guess the historic men's basketball tournament">
   <meta name="author" content="Tyler Geneva The Programmer">
-  <script src="javascripts/jquery.min.js"></script>
-  <script src="javascripts/bootstrap.min.js"></script>
+  <script src="/javascripts/jquery.min.js"></script>
+  <script src="/javascripts/bootstrap.min.js"></script>
   <link rel="stylesheet" href="/stylesheets/bootstrap.min.css">
   <link rel="stylesheet" href="/stylesheets/style.css">
 
@@ -68,11 +68,9 @@
          app.tourney = [];
          for (var selection in data) {   //loop through all the data
            var game = data[selection];
-          //  console.log(game)
            game.team_a = findTeamById(game['team_a_id']);  //get team name
            game.team_b = findTeamById(game['team_b_id']);
            app.tourney.push(game);
-          //  console.log(app.tourney);
            switch(game.round) {
             case 1:                //breaks out games into rounds
               round1.push(game);
@@ -113,22 +111,24 @@
         //      '<li>' + app.tourney[i].team_b + '</li><br>'
         //    )
         //  }
-
+        console.log(rounds.length)
          for (var i = 0; i < rounds.length; i++) {
            var round = rounds[i];
+           console.log(round.length)
            for (var n = 0; n < round.length; n++) {
-             var game = round[n];
+             var game = round[n];               //get game matchups
              var html = $('<div><p>' + game.team_a + '</p><p>' + game.team_b + '</p></div>');
-             html.addClass('game');
-             html.hide();
+             html.addClass('game'); //add Class to games
+             html.hide(); //makes games not shift as other games come in
 
-             (function (){
-               var locali = i;
+             (function (){      //bring in round by round but delayed
+               var locali = i+1;  //i+1 keeps the "#round1" as round1 and not round2 
+               console.log("local i:"+locali)
                var localhtml = html;
                setTimeout(function(){
                  $('#round'+locali).append(localhtml);
-                 localhtml.fadeIn(1000);
-               }, (i*2000));
+                 localhtml.fadeIn(2000);
+               }, (i*3000));
              })();
 
            }
@@ -188,7 +188,7 @@
         //  var y = app.tourney[0].team_b;
         // $('li').append(y);
 
-         console.log(app.tourney);
+        //  console.log(app.tourney);
        }  // success
      }); // ajax
     }
