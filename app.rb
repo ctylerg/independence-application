@@ -65,7 +65,7 @@ end
 
 get '/api/seasons/random' do
   content_type :json
-  season = Game.season(rand(2000..2015)).order(:round)
+  season = Game.season(rand(1985..1997)).order(:round)
   season.to_json
 end
 

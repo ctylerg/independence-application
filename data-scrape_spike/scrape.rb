@@ -4,8 +4,8 @@ require 'open-uri'
 
 # years = 1939..2015.to_a
 
-years = (1985..2015).to_a
-names = ['East', 'West', 'Midwest', 'South', 'National']
+years = (1985..1997).to_a
+names = ['East', 'West', 'Midwest', 'Southeast', 'National']
 
 data = {}
 

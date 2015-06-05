@@ -100,3 +100,5 @@ for (var i = 0; i < rounds.length; i++) {
   }
 }
 ```
+
+The names of the regions changed which is why the game consists of the years 1985-1997.  In v2.0 the years will be 1985-2015.

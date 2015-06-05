@@ -16,6 +16,19 @@
 
   </head>
   <body>
+
+<h1> Guess the year of the NCAA men's basket tournament</h1><br>
+<h2> Years are between 1985-1997</h2>
+    <form  action="localhost:9292/" method="POST">
+      <div align="center">
+      <br><br>
+      <input id="year" type="text" size="25" placeholder="Enter year">
+      <br><input id="guess" type="submit" value="Enter"><br>
+      </div>
+      </form>
+      <div class="results">
+
+      </div>
     <div id="round1" class='round'>
 
     </div>
@@ -43,6 +56,16 @@
 
     <script type="text/javascript">
 
+    $( "#guess" ).click(function( event ) {
+      event.preventDefault();
+      var bball = $( "#year" ).val()
+      if (bball == app.tourney[0].year) {
+        $('.results').html('Correct');
+} else {
+  $('.results').html('Guess Again');
+}
+});
+
 
     var app = app || {};
     $.ajax({
@@ -57,6 +80,7 @@
      $.ajax({
        url: '/api/seasons/random',  //pick a random year
        success: function(data){
+         console.log(data)
 
          var round1 = [];
          var round2 = [];
@@ -122,7 +146,7 @@
              html.hide(); //makes games not shift as other games come in
 
              (function (){      //bring in round by round but delayed
-               var locali = i+1;  //i+1 keeps the "#round1" as round1 and not round2 
+               var locali = i+1;  //i+1 keeps the "#round1" as round1 and not round2
                console.log("local i:"+locali)
                var localhtml = html;
                setTimeout(function(){

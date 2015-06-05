@@ -42,7 +42,7 @@ namespace :db do
 
     year_data = {}
     data = JSON(File.read('./data.json'))
-    names = ['East', 'West', 'Midwest', 'South', 'National']
+    names = ['East', 'West', 'Midwest', 'Southeast', 'National']
 
     data.each do |year, year_data|
       names.each do |name|
@@ -59,7 +59,7 @@ namespace :db do
     end
 
     #Collect Teams
-    names = ['East', 'West', 'Midwest', 'South']
+    names = ['East', 'West', 'Midwest', 'Southeast']
     data.each do |year, year_data|
       names.each do |name|
         year_data[name].each do |record|
@@ -82,7 +82,7 @@ namespace :db do
       [28, 30],
     ]
 
-    names = ['East', 'West', 'Midwest', 'South']
+    names = ['East', 'West', 'Midwest', 'Southeast']
     data.each do |year, year_data|
       names.each do |name|
         first_round.each do |game_idx|
@@ -113,7 +113,7 @@ namespace :db do
       [25, 29],
     ]
 
-    names = ['East', 'West', 'Midwest', 'South']
+    names = ['East', 'West', 'Midwest', 'Southeast']
     data.each do |year, year_data|
       names.each do |name|
         second_round.each do |game_idx|
@@ -142,7 +142,7 @@ namespace :db do
       [18,26],
     ]
 
-    names = ['East', 'West', 'Midwest', 'South']
+    names = ['East', 'West', 'Midwest', 'Southeast']
     data.each do |year, year_data|
       names.each do |name|
         sweet_sixteen.each do |game_idx|
@@ -170,7 +170,7 @@ namespace :db do
       [3,19],
     ]
 
-    names = ['East', 'West', 'Midwest', 'South']
+    names = ['East', 'West', 'Midwest', 'Southeast']
     data.each do |year, year_data|
       names.each do |name|
         elite_eight.each do |game_idx|
@@ -281,7 +281,7 @@ namespace :db do
   desc "Empty Database"
   task :empty do
     Team.destroy_all
-    Group.destroy_all
+    Game.destroy_all
     Season.destroy_all
   end # task :empty
 
