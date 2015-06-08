@@ -16,56 +16,99 @@
 
   </head>
   <body>
+            <nav class="navbar navbar-default navbar-fixed-top navbar-inverse">
+              <div class="container-fluid">
+                <div class="navbar-header">
+                  <a class="navbar-brand" href="#">
+                    <span class="glyphicon glyphicon-tint"></span>
+                  </a>
+                  <a class="navbar-brand" href="#">Old Skool Pool</a>
+                </div><!-- end navbar branding -->
+                <div class="collapse navbar-collapse">
+                  <ul class="nav navbar-nav">
+                    <li><a href="/">Home</a></li>  <!-- add these links in -->
+                    <li><a href="/">About</a></li>
+                    <li><a href="/">Contact</a></li>
+                  </ul>
+                </div><!-- end navbar links -->
+              </div>
+            </nav>
 
-<h1> Guess the year of the NCAA men's basket tournament</h1><br>
-<h2> Years are between 1985-1997</h2>
-    <form  action="localhost:9292/" method="POST">
-      <div align="center">
-      <br><br>
-      <input id="year" type="text" size="25" placeholder="Enter year">
-      <br><input id="guess" type="submit" value="Enter"><br>
-      </div>
-      </form>
-      <div class="results">
 
-      </div>
-    <div id="round1" class='round'>
+            <div class="container">
+              <header class="page-header">
+                <h1> Guess the year of the NCAA men's basketball tournament</h1>
 
+              </header>
+              <div class="row">
+              <article class="col-md-8">
+                <h2> Years are between 1985-1997</h2>
+              </article>
+              <article class="col-md-4">
+                <form  action="localhost:9292/" method="POST">
+                  <div align="center">
+                  <br><br>
+                  <input id="year" type="text" size="25" placeholder="Enter year">
+                  <br><input id="guess" type="submit" value="Enter"><br>
+                  </div>
+                </form>
+              </div>
+              </article>
+            </div>
+
+              <div class="row">
+                <article class="col-md-8">
+                </article>
+
+                  <article class="col-md-4">
+                  <div class="results">  <!-- for the guess -->
+                </article>
+                  </div>
+              </div>
+
+
+<div id=""></div> <!-- for the clock -->
+
+    <div class="row">
+
+      <article class="col-md-8">
+
+
+    <div id="round1" class='round'></div>
+
+    <div id="round2" class='round'></div>
+
+    <div id="round3" class='round'></div>
+
+    <div id="round4" class='round'></div>
+
+    <div id="round5" class='round'></div>
+
+    <div id="round6" class='round'></div>
+
+      </article>
     </div>
 
-    <div id="round2" class='round'>
-
-    </div>
-
-    <div id="round3" class='round'>
-
-    </div>
-
-    <div id="round4" class='round'>
-
-    </div>
-
-    <div id="round5" class='round'>
-
-    </div>
-
-    <div id="round6" class='round'>
-
-    </div>
-
-
+</div>
+</div> <!-- end container -->
     <script type="text/javascript">
 
-    $( "#guess" ).click(function( event ) {
+    $( "#guess" ).click(function( event ) {   //guess function links to form
       event.preventDefault();
       var bball = $( "#year" ).val()
       if (bball == app.tourney[0].year) {
         $('.results').html('Correct');
-} else {
-  $('.results').html('Guess Again');
-}
-});
+      } else {
+        $('.results').html('Guess Again');
+      }
+    });
 
+///////////////////////////
+
+
+
+
+/////////////////////////////////
 
     var app = app || {};
     $.ajax({
@@ -75,6 +118,8 @@
       }  // success
     }); // ajax
 
+
+    app.viewColumns = []; // contain 12 columns as STRINGS (html)
 
     app.pickTeam = function (){
      $.ajax({
@@ -138,11 +183,50 @@
         console.log(rounds.length)
          for (var i = 0; i < rounds.length; i++) {
            var round = rounds[i];
-           console.log(round.length)
+           //console.log("num of rounds: " + i);
+           //console.log("length of round: " + round.length)
+
+           var half_of_round = round.length / 2;
+           //console.log("half of round: " + half_of_round);
+
+           var round_first_half = [];
+
+           //console.log(round)
+
+           for (var inc = 0; round.length > half_of_round; inc++) {
+             round_first_half.push(round.pop());
+           }
+
+          //  console.log("round first half")
+          //  console.log(round_first_half);
+           var round_second_half = round;
+          //  console.log('second half')
+          //  console.log(round_second_half);
+
+           var actualNum = i + 1;
+           var bootstrapColumnName = 'col-md-' + actualNum;
+
+           var gameRow = $('.row')[2];
+
+
+           for (var a = 0; a < half_of_round; a++ ) {
+             console.log('actual column: ' + actualNum);
+
+           }
+
+           for (var b = 0; b < half_of_round; b++ ) {
+
+            actualNum = 12 - (i);
+            console.log('actual column: ' + actualNum);
+
+           }
+
+
            for (var n = 0; n < round.length; n++) {
+
              var game = round[n];               //get game matchups
              var html = $('<div><p>' + game.team_a + '</p><p>' + game.team_b + '</p></div>');
-             html.addClass('game'); //add Class to games
+             html.addClass('game'); //add Class to games to refernce in styling
              html.hide(); //makes games not shift as other games come in
 
              (function (){      //bring in round by round but delayed
