@@ -186,88 +186,88 @@
         console.log(rounds.length)
          for (var i = 0; i < rounds.length; i++) {
            var round = rounds[i];
-           //console.log("num of rounds: " + i);
-           //console.log("length of round: " + round.length)
-
-           var half_of_round = round.length / 2;
-           //console.log("half of round: " + half_of_round);
-
-           var round_first_half = [];
-           var gameRow = $('.row')[2];
-
-           //console.log(round)
-
-           for (var inc = 0; round.length > half_of_round; inc++) {
-             round_first_half.push(round.pop());
-           }
-
-          //  console.log("round first half")
-          //  console.log(round_first_half);
-           var round_second_half = round;
-          //  console.log('second half')
-          //  console.log(round_second_half);
-
-           var actualNum = i + 1;
-
-           var gameColumnText;
-
-           // first half of round...
-           for (var a = 0; a < half_of_round; a++ ) {
-             console.log('actual column: ' + actualNum);
-               var specificGame = round_first_half[a];
-               var gameText = '<div class="game"><p>' + specificGame.team_a + '</p><p>' + specificGame.team_b + '</p></div>';
-
-               gameColumnText = gameColumnText + gameText;
-             // <div class="col-md-1">
-
-           }
-
-           app.viewColumns[actualNum - 1] = "<div class='col-md-1'>" + gameColumnText + "</div>";
-
-           // setup for second half_of_round
-           gameColumnText = "";
-
-           actualNum = 12 - (i);
-
-           // second half of round...
-           for (var b = 0; b < half_of_round; b++) {
-             var specificGame = round[b];
-             console.log(round[b])
-             if (specificGame.hasOwnProperty("team_a")) {
-               var gameText = '<div class="game"><p>' + specificGame.team_a + '</p><p>' + specificGame.team_b + '</p></div>';
-
-               gameColumnText = gameColumnText + gameText;
-               //console.log('actual column: ' + actualNum);
-             }
-
-
-           }
-
-           app.viewColumns[actualNum - 1] = "<div class='col-md-1'>" + gameColumnText +  "</div>";
-
-           // now when done, go through the specific '.row' and loop through
-           // app.viewColumns and add the HTML from each (append)
-
-           for (var column in app.viewColumns) {
-
-             console.log(column)
-
-             var gameScreen = $('#updated-bracket');
-             $(gameScreen).html(html + app.viewColumns[column]);
-
-
-           }
+          //  console.log("num of rounds: " + i);
+          //  console.log("length of round: " + round.length)
+          //
+          //  var half_of_round = round.length / 2;
+          //  //console.log("half of round: " + half_of_round);
+          //
+          //  var round_first_half = [];
+          //  var gameRow = $('.row')[2];
+          //
+          //  //console.log(round)
+          //
+          //  for (var inc = 0; round.length > half_of_round; inc++) {
+          //    round_first_half.push(round.pop());
+          //  }
+          //
+          // //  console.log("round first half")
+          // //  console.log(round_first_half);
+          //  var round_second_half = round;
+          // //  console.log('second half')
+          // //  console.log(round_second_half);
+          //
+          //  var actualNum = i + 1;
+          //
+          //  var gameColumnText;
+          //
+          //  // first half of round...
+          //  for (var a = 0; a < half_of_round; a++ ) {
+          //    console.log('actual column: ' + actualNum);
+          //      var specificGame = round_first_half[a];
+          //      var gameText = '<div class="game"><p>' + specificGame.team_a + '</p><p>' + specificGame.team_b + '</p></div>';
+          //
+          //      gameColumnText = gameColumnText + gameText;
+          //    // <div class="col-md-1">
+          //
+          //  }
+          //
+          //  app.viewColumns[actualNum - 1] = "<div class='col-md-1'>" + gameColumnText + "</div>";
+          //
+          //  // setup for second half_of_round
+          //  gameColumnText = "";
+          //
+          //  actualNum = 12 - (i);
+          //
+          //  // second half of round...
+          //  for (var b = 0; b < half_of_round; b++) {
+          //    var specificGame = round[b];
+          //    console.log(round[b])
+          //    if (specificGame.hasOwnProperty("team_a")) {
+          //      var gameText = '<div class="game"><p>' + specificGame.team_a + '</p><p>' + specificGame.team_b + '</p></div>';
+          //
+          //      gameColumnText = gameColumnText + gameText;
+          //      //console.log('actual column: ' + actualNum);
+          //    }
+          //
+          //
+          //  }
+          //
+          //  app.viewColumns[actualNum - 1] = "<div class='col-md-1'>" + gameColumnText +  "</div>";
+          //
+          //  // now when done, go through the specific '.row' and loop through
+          //  // app.viewColumns and add the HTML from each (append)
+          //
+          //  for (var column in app.viewColumns) {
+          //
+          //    console.log(column)
+          //
+          //    var gameScreen = $('#updated-bracket');
+          //    $(gameScreen).html(html + app.viewColumns[column]);
+          //
+          //
+          //  }
 
            for (var n = 0; n < round.length; n++) {
 
              var game = round[n];               //get game matchups
-             var html = $('<div><p>' + specificGame.team_a + '</p><p>' + specificGame.team_b + '</p></div>');
+             var html = $('<div><p>' + game.team_a + '</p><p>' + game.team_b + '</p></div>');
              html.addClass('game'); //add Class to games to refernce in styling
              html.hide(); //makes games not shift as other games come in
 
              (function (){      //bring in round by round but delayed
                var locali = i+1;  //i+1 keeps the "#round1" as round1 and not round2
-               //console.log("local i:"+locali)
+               console.log("local i:"+locali)
                var localhtml = html;
                setTimeout(function(){
                  $('#round'+locali).append(localhtml);
