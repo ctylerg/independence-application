@@ -89,6 +89,9 @@
       </article>
     </div>
 
+    <div class="row" id="updated-bracket">
+    </div>
+
 </div>
 </div> <!-- end container -->
     <script type="text/javascript">
@@ -119,7 +122,7 @@
     }); // ajax
 
 
-    app.viewColumns = []; // contain 12 columns as STRINGS (html)
+    app.viewColumns = [1,2,3,4,5,6,7,8,9,10,11,12]; // contain 12 columns as STRINGS (html)
 
     app.pickTeam = function (){
      $.ajax({
@@ -190,6 +193,7 @@
            //console.log("half of round: " + half_of_round);
 
            var round_first_half = [];
+           var gameRow = $('.row')[2];
 
            //console.log(round)
 
@@ -204,28 +208,56 @@
           //  console.log(round_second_half);
 
            var actualNum = i + 1;
-           var bootstrapColumnName = 'col-md-' + actualNum;
 
-           var gameRow = $('.row')[2];
+           var gameColumnText;
 
-
+           // first half of round...
            for (var a = 0; a < half_of_round; a++ ) {
+             console.log('actual column: ' + actualNum);
+               var specificGame = round_first_half[a];
+               var gameText = '<div class="game"><p>' + specificGame.team_a + '</p><p>' + specificGame.team_b + '</p></div>';
+
+               gameColumnText = gameColumnText + gameText;
+             // <div class="col-md-1">
+
+           }
+
+           app.viewColumns[actualNum - 1] = "<div class='col-md-1'>" + gameColumnText + "</div>";
+
+           // setup for second half_of_round
+           gameColumnText = "";
+
+           actualNum = 12 - (i);
+
+           // second half of round...
+           for (var b = 0; b < half_of_round; b++ ) {
+             var specificGame = round_second_half[b];
+             var gameText = '<div class="game"><p>' + specificGame.team_a + '</p><p>' + specificGame.team_b + '</p></div>';
+
+             gameColumnText = gameColumnText + gameText;
              console.log('actual column: ' + actualNum);
 
            }
 
-           for (var b = 0; b < half_of_round; b++ ) {
+           app.viewColumns[actualNum - 1] = "<div class='col-md-1'>" + gameColumnText +  "</div>";
 
-            actualNum = 12 - (i);
-            console.log('actual column: ' + actualNum);
+           // now when done, go through the specific '.row' and loop through
+           // app.viewColumns and add the HTML from each (append)
+
+           for (var column in app.viewColumns) {
+
+             console.log(column)
+
+             var gameScreen = $('#updated-bracket');
+             $(gameScreen).html(html + app.viewColumns[column]);
+
 
            }
-
 
            for (var n = 0; n < round.length; n++) {
 
              var game = round[n];               //get game matchups
-             var html = $('<div><p>' + game.team_a + '</p><p>' + game.team_b + '</p></div>');
+             var html = $('<div><p>' + specificGame.team_a + '</p><p>' + specificGame.team_b + '</p></div>');
              html.addClass('game'); //add Class to games to refernce in styling
              html.hide(); //makes games not shift as other games come in
 
