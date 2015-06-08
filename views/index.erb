@@ -230,12 +230,16 @@
            actualNum = 12 - (i);
 
            // second half of round...
-           for (var b = 0; b < half_of_round; b++ ) {
-             var specificGame = round_second_half[b];
-             var gameText = '<div class="game"><p>' + specificGame.team_a + '</p><p>' + specificGame.team_b + '</p></div>';
+           for (var b = 0; b < half_of_round; b++) {
+             var specificGame = round[b];
+             console.log(round[b])
+             if (specificGame.hasOwnProperty("team_a")) {
+               var gameText = '<div class="game"><p>' + specificGame.team_a + '</p><p>' + specificGame.team_b + '</p></div>';
 
-             gameColumnText = gameColumnText + gameText;
-             console.log('actual column: ' + actualNum);
+               gameColumnText = gameColumnText + gameText;
+               //console.log('actual column: ' + actualNum);
+             }
+
 
            }
 
@@ -263,7 +267,7 @@
 
              (function (){      //bring in round by round but delayed
                var locali = i+1;  //i+1 keeps the "#round1" as round1 and not round2
-               console.log("local i:"+locali)
+               //console.log("local i:"+locali)
                var localhtml = html;
                setTimeout(function(){
                  $('#round'+locali).append(localhtml);
