@@ -41,14 +41,14 @@
 
               </header>
               <div class="row">
-              <article class="col-md-8">
-                <h2> Years are between 1985-1997</h2>
+              <article class="col-md-4">
+                  <!-- <h2> Years are between 1985-1997</h2> -->
               </article>
               <article class="col-md-4">
                 <form  action="localhost:9292/" method="POST">
                   <div align="center">
                   <br><br>
-                  <input id="year" type="text" size="25" placeholder="Enter year">
+                  <input id="year" type="text" size="25" placeholder="Guess The Year 1985-1997">
                   <br><input id="guess" type="submit" value="Enter"><br>
                   </div>
                 </form>
@@ -57,11 +57,12 @@
             </div>
 
               <div class="row">
-                <article class="col-md-8">
+                <article class="col-md-4">
                 </article>
 
                   <article class="col-md-4">
                   <div class="results">  <!-- for the guess -->
+
                 </article>
                   </div>
               </div>
@@ -69,7 +70,7 @@
 
 <div id=""></div> <!-- for the clock -->
 
-    <div class="row">
+    <div class="bracket row">
 
       <article class="col-md-8">
 
@@ -100,9 +101,9 @@
       event.preventDefault();
       var bball = $( "#year" ).val()
       if (bball == app.tourney[0].year) {
-        $('.results').html('Correct');
+        $('.results').html('Correct').addClass('correct');
       } else {
-        $('.results').html('Guess Again');
+        $('.results').html('Guess Again').addClass('wrong');
       }
     });
 
@@ -263,7 +264,7 @@
              var game = round[n];               //get game matchups
              var html = $('<div><p>' + game.team_a + '</p><p>' + game.team_b + '</p></div>');
              html.addClass('game'); //add Class to games to refernce in styling
-             html.hide(); //makes games not shift as other games come in
+               html.hide(); //makes games not shift as other games come in
 
              (function (){      //bring in round by round but delayed
                var locali = i+1;  //i+1 keeps the "#round1" as round1 and not round2
@@ -358,5 +359,11 @@
      })
 
  </script>
+
+ <footer class="container">
+  <div class="footer">
+    <h4>&copy 2015 ctylerg production</h4>
+  </div>
+</footer>
   </body>
 </html>

@@ -1,7 +1,15 @@
 body {
-  background-color: lightblue;
+  /*background-color: darkgrey;*/
+  background-image: url("http://3.bp.blogspot.com/-fv5csmCQoTY/VRUckfJEqUI/AAAAAAAAEuE/ekj62eG6oe4/s1600/basketball-court-wallpapers-and-background.jpg");
+  background-repeat: no-repeat;
+  background-size: 100% 100%;
+  /*margin: 0 0 20px;*/
 }
 
+
+.bracket{
+  min-height: 1000px;
+}
 
 .round{
   display: inline-block;
@@ -21,7 +29,33 @@ body {
   text-align: center;
 }
 
+h1 {
+  position: absolute;
+  color: lightgrey;
+}
+
+h2 {
+  position: relative;
+}
+
 .results {
   text-align: center;
-  background-color: blue;
+  font-size: 20px;
+  font-weight: bold;
+  height: 20px;
+}
+
+.wrong {
+  color: red;
+}
+
+.correct {
+  color: green;
+}
+
+
+.footer {
+  color: white;
+  text-align: center;
+
 }
