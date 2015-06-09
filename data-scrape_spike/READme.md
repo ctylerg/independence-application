@@ -1,11 +1,47 @@
+#Old Skool Pool
+
+An entertaining app, where users guess the year of the NCAA men's basketball tournament.  Just like college the shot clock is only 35 seconds.
 
 
-This get the data for this app, the data had to be scraped.  The 'nokogiri' gem was used to accomplish this.  Unfortunately the data was not easily parsed and it took many attempts to get the json meta-data into usable data by checking some Ruby code with Pry.  Once the data was digestible and entered into the database, the app building process started.  Sinatra was used as the base and then Backbone.js views were added.  API calls were made to the database to retrieve the necessary data.
+#About
+This Sinatra app incorporated a lot of Javascript and jQuery to get the data to render in a usable fashion.  To get the data for this app, it had to be scraped using the 'nokogiri' gem.  Unfortunately the data was not easily parsed and it took many attempts to get the json meta-data into usable data by testing some Ruby code with Pry.  Once the data was digestible and entered into the database, the app building process started.  Sinatra was used as the base and then Backbone.js views were added.  API calls were made to the database to retrieve the necessary data.
+
+
+#Technology
+- Sinatra
+- Javascript
+- jQuery
+- Ruby
+- postgresql
+- nokogiri
+- bootstrap
+
+
+#Version 2.0
+- Better rendering of teams in bracket format
+- Include missing years where data sourced changed the name of the regions
+- Log-in
+- Authentication
+- Top-scores (quickest time) for each year
+- different levels of difficulty
+
+
+
+##Screenshots
+![Wrong](/images/wrong_ans.png)
+
+
+![Right](/images/right_ans.png)
+
+
+
+#Code  
+why else are you scrolling this far down?
+
 
 Example of how to clean and sort the json data.
 ```ruby
 require 'json'
-
 
 year_data = {}
 data = JSON(File.read('./data.json'))
@@ -101,4 +137,5 @@ for (var i = 0; i < rounds.length; i++) {
 }
 ```
 
-The names of the regions changed which is why the game consists of the years 1985-1997.  In v2.0 the years will be 1985-2015.
+#Author
+[Tyler Geneva](https://github.com/ctylerg)
