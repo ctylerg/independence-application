@@ -5,3 +5,4 @@ gem 'sinatra-activerecord'
 gem 'pg'
 gem 'json'
 gem 'bcrypt'
+gem 'rails_12factor', group: :production
