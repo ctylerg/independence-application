@@ -102,6 +102,7 @@
       var bball = $( "#year" ).val()
       if (bball == app.tourney[0].year) {
         $('.results').html('Correct').addClass('correct');
+        // window.location.replace("http://cecelious.com/");
       } else {
         $('.results').html('Guess Again').addClass('wrong');
       }
@@ -273,7 +274,7 @@
                setTimeout(function(){
                  $('#round'+locali).append(localhtml);
                  localhtml.fadeIn(2000);
-               }, (i*3000));
+               }, (i*6600));
              })();
 
            }

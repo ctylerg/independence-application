@@ -34,15 +34,15 @@ h1 {
   color: lightgrey;
 }
 
-h2 {
+/*h2 {
   position: relative;
-}
+}*/
 
 .results {
   text-align: center;
-  font-size: 20px;
+  font-size: 40px;
   font-weight: bold;
-  height: 20px;
+  height: 40px;
 }
 
 .wrong {
