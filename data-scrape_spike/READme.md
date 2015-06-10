@@ -15,6 +15,8 @@ This Sinatra app incorporated a lot of Javascript and jQuery to get the data to 
 - postgresql
 - nokogiri
 - bootstrap
+- Ajax
+- CRUD
 
 
 #Version 2.0
