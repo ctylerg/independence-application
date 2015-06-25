@@ -60,18 +60,20 @@ app.pickTeam = function (){
        var bootstrapId = (i + 1);
        var reverseBootstrapId = app.getReverseBootstrapColumnId(bootstrapId);
 
+       for (var inc = 0; inc < splitRounds.firstHalf.length; inc++) {
+
+         app.placeTeamInBracket(bootstrapId, splitRounds.firstHalf.pop());
+
+       }
+
+       for (var inc = 0; inc < splitRounds.secondHalf.length; inc++) {
+
+         app.placeTeamInBracket(reverseBootstrapId, splitRounds.secondHalf.pop());
+
+       }
+
        (function (){      //bring in round by round but delayed
-         for (var inc = 0; inc < splitRounds.firstHalf.length; inc++) {
 
-           app.placeTeamInBracket(bootstrapId, splitRounds.firstHalf.pop());
-
-         }
-
-         for (var inc = 0; inc < splitRounds.secondHalf.length; inc++) {
-
-           app.placeTeamInBracket(reverseBootstrapId, splitRounds.secondHalf.pop());
-
-         }
          }, (6600));
        }
 
