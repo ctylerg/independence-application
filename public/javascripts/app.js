@@ -12,7 +12,6 @@ app.pickTeam = function (){
  $.ajax({
    url: '/api/seasons/random',  //pick a random year
    success: function(data){
-     console.log(data)
 
      var round1 = [];
      var round2 = [];
@@ -52,9 +51,14 @@ app.pickTeam = function (){
 
      }
 
-    console.log(rounds.length)
      for (var i = 0; i < rounds.length; i++) {
        var round = rounds[i];
+
+        setTimeout(function() {
+
+          console.log("6600 timer fired");
+
+        }, 6600);
 
        var splitRounds = app.splitBracketInTwo(round);
        var bootstrapId = (i + 1);
@@ -72,15 +76,11 @@ app.pickTeam = function (){
 
        }
 
-       (function (){      //bring in round by round but delayed
 
-         }, (6600));
-       }
-
-   }  // success
- }); // ajax
-}
-
+   }
+ } // success
+}); // ajax
+};
 /**
  * This function is designed to take a bracket number + team and
  * append it to the appropriate ID on the page.
@@ -101,8 +101,8 @@ app.placeTeamInBracket = function(bracketNumber, game) {
       localhtml.fadeIn(2000);
     })
 
-  console.log("please fix rendering");
-  console.log(game);
+  //console.log("please fix rendering");
+  //console.log(game);
 
 
   //$('#round-' + bracketNumber).append("<br>" + game);
@@ -120,11 +120,11 @@ app.splitBracketInTwo = function(bracketArray) {
   var halfOfBracket = lengthOfBracket / 2;
 
   for (var inc = 0; inc < halfOfBracket; inc++) {
-    bracketObject.firstHalf.push(bracketArray[inc]);
+    bracketObject.firstHalf.push(bracketArray.pop());
   }
 
   for (var inc = 0; inc < halfOfBracket; inc++) {
-    bracketObject.secondHalf.push(bracketArray[inc]);
+    bracketObject.secondHalf.push(bracketArray.pop());
   }
 
   console.log("splitBracketInTwo result:");
