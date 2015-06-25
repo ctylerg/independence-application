@@ -1,7 +1,9 @@
 require 'bundler'
 Bundler.require()
 
+
 ###################
+# connection for heroku
 db = URI.parse(ENV['DATABASE_URL'] || 'postgres://localhost/march_madness')
 ActiveRecord::Base.establish_connection(
  :adapter => 'postgresql',
@@ -12,16 +14,67 @@ ActiveRecord::Base.establish_connection(
  :encoding => 'utf8'
 )
 ###################
+# sessions
+enable(:sessions)
+
+
+###################
+#models
 require './models/team'
 require './models/game'
 require './models/season'
+require './models/user'
 
 ######################
+# helpers
+def current_user
+  if session[:current_user]
+    User.find(session[:current_user])
+  else
+    nil
+  end
+end
+
+def authenticate!
+  redirect '/' unless current_user
+end
+#####################
+#routes
 
 get '/' do
+  # if current_user
+  #   "You are now logged in"
+  # else
+  #   "Please sign in"
+  # end
   erb :index
 end
 
+post '/users' do
+  user = User.new(params[:user])
+  user.password = params[:password]  # Setting: Doing the hashing
+  user.save!  # save in place
+  redirect '/'
+end
+
+# Sign-In
+post '/sessions' do
+  user = User.find_by(username: params[:username])
+  if (user.password == params[:password])  # Does the password match?
+    session[:current_user] = user.id
+    redirect '/' # Authenticated
+  else
+    redirect '/' # Not Authenticated
+  end
+end
+
+# Log-out
+delete '/sessions' do
+  session[:current_user] = nil
+  redirect '/'
+end
+
+#########
 get '/api/teams' do
   content_type :json
   teams = Team.all

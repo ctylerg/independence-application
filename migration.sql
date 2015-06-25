@@ -7,4 +7,6 @@ CREATE TABLE games (id SERIAL PRIMARY KEY, score_a INTEGER, score_b INTEGER, sea
 
 CREATE TABLE seasons(id SERIAL PRIMARY KEY, year INTEGER);
 
+CREATE TABLE users (id SERIAL PRIMARY KEY, username VARCHAR(255), password_hash VARCHAR(255));
+
 ###CREATE TABLE ranks(id SERIAL PRIMARY KEY, region VARCHAR(255), team_id(INTEGER), season_id(INTEGER), seed(INTEGER));
