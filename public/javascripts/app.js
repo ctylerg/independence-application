@@ -54,11 +54,7 @@ app.pickTeam = function (){
      for (var i = 0; i < rounds.length; i++) {
        var round = rounds[i];
 
-        setTimeout(function() {
 
-          console.log("6600 timer fired");
-
-        }, 6600);
 
        var splitRounds = app.splitBracketInTwo(round);
        var bootstrapId = (i + 1);
@@ -66,13 +62,13 @@ app.pickTeam = function (){
 
        for (var inc = 0; inc < splitRounds.firstHalf.length; inc++) {
 
-         app.placeTeamInBracket(bootstrapId, splitRounds.firstHalf.pop());
+         app.placeTeamInBracket(bootstrapId, splitRounds.firstHalf.pop(), bootstrapId);
 
        }
 
        for (var inc = 0; inc < splitRounds.secondHalf.length; inc++) {
 
-         app.placeTeamInBracket(reverseBootstrapId, splitRounds.secondHalf.pop());
+         app.placeTeamInBracket(reverseBootstrapId, splitRounds.secondHalf.pop(), bootstrapId);
 
        }
 
@@ -87,19 +83,20 @@ app.pickTeam = function (){
  * @bracketNumber: ID associated with bracket
  * @teamName: string that is name of Team
  */
-app.placeTeamInBracket = function(bracketNumber, game) {
+app.placeTeamInBracket = function(bracketNumber, game, timeout) {
 
   //### refcator:
   var html = $('<div><p>' + game.team_a + '</p><p>' + game.team_b + '</p></div>');
   html.addClass('game'); //add Class to games to refernce in styling
     html.hide(); //makes games not shift as other games come in
 
+    var timerCount = 6600 * timeout;
 
     var localhtml = html;
     setTimeout(function(){
       $('#round-' + bracketNumber).append(localhtml);
       localhtml.fadeIn(2000);
-    })
+    }, timerCount);
 
   //console.log("please fix rendering");
   //console.log(game);
@@ -162,8 +159,8 @@ app.getReverseBootstrapColumnId = function(firstHalfId) {
 
   }
 
-  console.log("getReverseBootstrapColumnId result:")
-  console.log(result);
+  //console.log("getReverseBootstrapColumnId result:")
+  //console.log(result);
 
   return result;
 
