@@ -90,7 +90,7 @@ app.placeTeamInBracket = function(bracketNumber, game, timeout) {
   html.addClass('game'); //add Class to games to refernce in styling
     html.hide(); //makes games not shift as other games come in
 
-    var timerCount = 6600 * timeout;
+    var timerCount = 660 * timeout;
 
     var localhtml = html;
     setTimeout(function(){
@@ -98,8 +98,6 @@ app.placeTeamInBracket = function(bracketNumber, game, timeout) {
       localhtml.fadeIn(2000);
     }, timerCount);
 
-  //console.log("please fix rendering");
-  //console.log(game);
 
 
   //$('#round-' + bracketNumber).append("<br>" + game);
@@ -109,10 +107,13 @@ app.placeTeamInBracket = function(bracketNumber, game, timeout) {
 
 app.splitBracketInTwo = function(bracketArray) {
 
+  // console.log("bracketttt length" +  bracketArray.length)
+
   var bracketObject = {
     firstHalf: [],
     secondHalf: []
   };
+
   var lengthOfBracket = bracketArray.length
   var halfOfBracket = lengthOfBracket / 2;
 
@@ -120,12 +121,20 @@ app.splitBracketInTwo = function(bracketArray) {
     bracketObject.firstHalf.push(bracketArray.pop());
   }
 
+  // console.log("Expected : Actual");
+  // console.log(halfOfBracket + " : " + bracketObject.firstHalf.length)
+  // console.log(bracketArray);
+
   for (var inc = 0; inc < halfOfBracket; inc++) {
     bracketObject.secondHalf.push(bracketArray.pop());
   }
 
-  console.log("splitBracketInTwo result:");
-  console.log(bracketObject);
+
+  // console.log(bracketObject.secondHalf);
+
+
+  // console.log(bracketObject.firstHalf.length)
+  // console.log(bracketObject.secondHalf.length)
 
   return bracketObject;
 
@@ -161,6 +170,7 @@ app.getReverseBootstrapColumnId = function(firstHalfId) {
 
   //console.log("getReverseBootstrapColumnId result:")
   //console.log(result);
+   console.log(app.tourney);
 
   return result;
 

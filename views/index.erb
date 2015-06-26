@@ -27,9 +27,9 @@
                 </div><!-- end navbar branding -->
                 <div class="collapse navbar-collapse">
                   <ul class="nav navbar-nav">
-                    <li><a href="/">Home</a></li>  <!-- add these links in -->
-                    <li><a href="/">About</a></li>
-                    <li><a href="/">Contact</a></li>
+                    <li><a href="/">Guess the year of the NCAA men's basketball tournament</a></li>  <!-- add these links in -->
+                    <!-- <li><a href="/">About</a></li>
+                    <li><a href="/">Contact</a></li> -->
                   </ul>
                 </div><!-- end navbar links -->
               </div>
@@ -37,10 +37,10 @@
 
 
             <div class="container">
-              <header class="page-header">
+              <!-- <header class="page-header">
                 <h1> Guess the year of the NCAA men's basketball tournament</h1>
 
-              </header>
+              </header> -->
               <div class="row">
               <article class="col-md-4">
                   <!-- <h2> Years are between 1985-1997</h2> -->
@@ -121,7 +121,7 @@
     var bball = $( "#year" ).val()
     if (bball == app.tourney[0].year) {
       $('.results').html('Correct').addClass('correct');
-      window.location.replace("http://cecelious.com/");
+      // window.location.replace("http://cecelious.com/");
     } else {
       $('.results').html('Guess Again').addClass('wrong');
     }

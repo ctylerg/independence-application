@@ -6,9 +6,11 @@ body {
   /*margin: 0 0 20px;*/
 }
 
-
+#year {
+  margin: 20px;
+}
 .bracket{
-  min-height: 1000px;
+  min-height: 800px;
 }
 
 .round{
@@ -17,18 +19,55 @@ body {
   width: 10%;
   margin-left: 10px;
 }
+/*#round-1{
+  display: inline-block;
+  float: left;
+  width: 10%;
+  margin-left: 10px;
+}
+#round-3{
+  display: inline-block;
+  float: left;
+  width: 10%;
+  margin-left: 10px;
+}
+#round-3{
+  display: inline-block;
+  float: left;
+  width: 10%;
+  margin-left: 10px;
+}
+#round-4{
+  display: inline-block;
+  float: left;
+  width: 10%;
+  margin-left: 10px;
+}
+#round-5{
+  display: inline-block;
+  float: left;
+  width: 10%;
+  margin-left: 10px;
+}*/
+
 
 .game{
-  background-color: red;
-
+  background-color: lightblue;
+  width: 80px;
 }
 
 .game > p{
-  background-color: lightgreen;
-  border: 1px solid red;
+  background-color: orange;
+  border: 1px solid lightblue;
   text-align: center;
+  width: 80px;
 }
-
+#round-6{
+  display: inline-block;
+  float: left;
+  width: 10%;
+  margin-left: 10px;
+}
 h1 {
   position: absolute;
   color: lightgrey;
@@ -43,6 +82,7 @@ h1 {
   font-size: 40px;
   font-weight: bold;
   height: 40px;
+  margin: 0 0 10px 0;
 }
 
 .wrong {
