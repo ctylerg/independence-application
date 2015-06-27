@@ -107,7 +107,7 @@ app.placeTeamInBracket = function(bracketNumber, game, timeout) {
 
 app.splitBracketInTwo = function(bracketArray) {
 
-  // console.log("bracketttt length" +  bracketArray.length)
+  console.log("bracketttt length" +  bracketArray.length)
 
   var bracketObject = {
     firstHalf: [],
@@ -130,11 +130,11 @@ app.splitBracketInTwo = function(bracketArray) {
   }
 
 
-  // console.log(bracketObject.secondHalf);
+  // console.log(bracketObject);
 
 
-  // console.log(bracketObject.firstHalf.length)
-  // console.log(bracketObject.secondHalf.length)
+  console.log(bracketObject.firstHalf)
+  console.log(bracketObject.secondHalf)
 
   return bracketObject;
 
