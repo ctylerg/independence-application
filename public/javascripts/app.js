@@ -21,11 +21,15 @@ app.pickTeam = function (){
      var round6 = [];
 
      app.tourney = [];
+
+
      for (var selection in data) {   //loop through all the data
        var game = data[selection];
        game.team_a = app.findTeamById(game['team_a_id']);  //get team name
        game.team_b = app.findTeamById(game['team_b_id']);
        app.tourney.push(game);
+
+
        switch(game.round) {
         case 1:                //breaks out games into rounds
           round1.push(game);
@@ -54,21 +58,21 @@ app.pickTeam = function (){
      for (var i = 0; i < rounds.length; i++) {
        var round = rounds[i];
 
-
-
+console.log("I " + i);
        var splitRounds = app.splitBracketInTwo(round);
        var bootstrapId = (i + 1);
        var reverseBootstrapId = app.getReverseBootstrapColumnId(bootstrapId);
 
        for (var inc = 0; inc < splitRounds.firstHalf.length; inc++) {
+         var popped = splitRounds.firstHalf[inc];
 
-         app.placeTeamInBracket(bootstrapId, splitRounds.firstHalf.pop(), bootstrapId);
-
+           app.placeTeamInBracket(bootstrapId, popped, bootstrapId);
        }
 
        for (var inc = 0; inc < splitRounds.secondHalf.length; inc++) {
+         var popped = splitRounds.secondHalf[inc];
 
-         app.placeTeamInBracket(reverseBootstrapId, splitRounds.secondHalf.pop(), bootstrapId);
+         app.placeTeamInBracket(reverseBootstrapId, popped, bootstrapId);
 
        }
 
@@ -86,6 +90,7 @@ app.pickTeam = function (){
 app.placeTeamInBracket = function(bracketNumber, game, timeout) {
 
   //### refcator:
+
   var html = $('<div><p>' + game.team_a + '</p><p>' + game.team_b + '</p></div>');
   html.addClass('game'); //add Class to games to refernce in styling
     html.hide(); //makes games not shift as other games come in
@@ -98,7 +103,7 @@ app.placeTeamInBracket = function(bracketNumber, game, timeout) {
       localhtml.fadeIn(2000);
     }, timerCount);
 
-
+    // console.log("SSSSSSSSSS" + bracketNumber)
 
   //$('#round-' + bracketNumber).append("<br>" + game);
   return true;
@@ -109,17 +114,19 @@ app.splitBracketInTwo = function(bracketArray) {
 
   console.log("bracketttt length" +  bracketArray.length)
 
+
   var bracketObject = {
     firstHalf: [],
     secondHalf: []
   };
 
-  var lengthOfBracket = bracketArray.length
-  var halfOfBracket = lengthOfBracket / 2;
+  var lengthOfBracket = bracketArray.length;
+   var halfOfBracket = lengthOfBracket / 2;
+  // var firstHalfbracket = lengthOfBracket[15..31]
 
   for (var inc = 0; inc < halfOfBracket; inc++) {
     bracketObject.firstHalf.push(bracketArray.pop());
-  }
+  };
 
   // console.log("Expected : Actual");
   // console.log(halfOfBracket + " : " + bracketObject.firstHalf.length)
@@ -127,10 +134,11 @@ app.splitBracketInTwo = function(bracketArray) {
 
   for (var inc = 0; inc < halfOfBracket; inc++) {
     bracketObject.secondHalf.push(bracketArray.pop());
-  }
+  };
+  // console.log(bracketObject.secondHalf.length)
 
+ // console.log("AAAAAAAA" + firstHalfbracket);
 
-  // console.log(bracketObject);
 
 
   console.log(bracketObject.firstHalf)
@@ -170,7 +178,7 @@ app.getReverseBootstrapColumnId = function(firstHalfId) {
 
   //console.log("getReverseBootstrapColumnId result:")
   //console.log(result);
-   console.log(app.tourney);
+  //  console.log(app.tourney);
 
   return result;
 
