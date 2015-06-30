@@ -58,7 +58,6 @@ app.pickTeam = function (){
      for (var i = 0; i < rounds.length; i++) {
        var round = rounds[i];
 
-console.log("I " + i);
        var splitRounds = app.splitBracketInTwo(round);
        var bootstrapId = (i + 1);
        var reverseBootstrapId = app.getReverseBootstrapColumnId(bootstrapId);
@@ -75,8 +74,6 @@ console.log("I " + i);
          app.placeTeamInBracket(reverseBootstrapId, popped, bootstrapId);
 
        }
-
-
    }
  } // success
 }); // ajax
@@ -103,17 +100,11 @@ app.placeTeamInBracket = function(bracketNumber, game, timeout) {
       localhtml.fadeIn(2000);
     }, timerCount);
 
-    // console.log("SSSSSSSSSS" + bracketNumber)
-
-  //$('#round-' + bracketNumber).append("<br>" + game);
   return true;
 
 };
 
 app.splitBracketInTwo = function(bracketArray) {
-
-  console.log("bracketttt length" +  bracketArray.length)
-
 
   var bracketObject = {
     firstHalf: [],
@@ -122,27 +113,14 @@ app.splitBracketInTwo = function(bracketArray) {
 
   var lengthOfBracket = bracketArray.length;
    var halfOfBracket = lengthOfBracket / 2;
-  // var firstHalfbracket = lengthOfBracket[15..31]
 
   for (var inc = 0; inc < halfOfBracket; inc++) {
     bracketObject.firstHalf.push(bracketArray.pop());
   };
 
-  // console.log("Expected : Actual");
-  // console.log(halfOfBracket + " : " + bracketObject.firstHalf.length)
-  // console.log(bracketArray);
-
   for (var inc = 0; inc < halfOfBracket; inc++) {
     bracketObject.secondHalf.push(bracketArray.pop());
   };
-  // console.log(bracketObject.secondHalf.length)
-
- // console.log("AAAAAAAA" + firstHalfbracket);
-
-
-
-  console.log(bracketObject.firstHalf)
-  console.log(bracketObject.secondHalf)
 
   return bracketObject;
 
@@ -176,9 +154,7 @@ app.getReverseBootstrapColumnId = function(firstHalfId) {
 
   }
 
-  //console.log("getReverseBootstrapColumnId result:")
-  //console.log(result);
-  //  console.log(app.tourney);
+  console.log(app.tourney);
 
   return result;
 
