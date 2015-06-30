@@ -96,14 +96,15 @@ h1 {
   margin: 0 0 10px 0;
 }
 
+
+
+.correct {
+  color: green !important;
+}
+
 .wrong {
   color: red;
 }
-
-.correct {
-  color: green;
-}
-
 
 .footer {
   color: white;

@@ -30,10 +30,10 @@ This Sinatra app incorporated a lot of Javascript and jQuery to get the data to 
 
 
 ##Screenshots
-![Wrong](/images/wrong_ans.png)
+![Wrong](/public/images/wrongans.png)
 
 
-![Right](/images/right_ans.png)
+![Right](/public/images/rightans.png)
 
 
 
