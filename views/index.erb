@@ -107,29 +107,7 @@
 
   <script type="text/javascript">
 
-  $(document).ready(function() {
 
-
-  $( "#guess" ).click(function( event ) {   //guess function links to form
-    event.preventDefault();
-    var bball = $( "#year" ).val()
-    if (bball == app.tourney[0].year) {
-      $('.results').html('Correct').addClass('correct');
-      // window.location.replace("http://cecelious.com/");
-    } else {
-      $('.results').html('Guess Again').addClass('wrong');
-    }
-  });
-
-  $.ajax({
-    url: '/api/teams',
-    success: function(data){
-      app.teams = data;
-      app.pickTeam();
-    }  // success
-  }); // ajax
-
-});
 
  </script>
 
