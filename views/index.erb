@@ -11,106 +11,100 @@
   <script src="/javascripts/jquery.min.js"></script>
   <script src="/javascripts/bootstrap.min.js"></script>
   <script src="/javascripts/app.js"></script>
+
   <link rel="stylesheet" href="/stylesheets/bootstrap.min.css">
   <link rel="stylesheet" href="/stylesheets/style.css">
 
 
+
+
   </head>
   <body>
-            <nav class="navbar navbar-default navbar-fixed-top navbar-inverse">
-              <div class="container-fluid">
-                <div class="navbar-header">
-                  <a class="navbar-brand" href="#">
-                    <span class="glyphicon glyphicon-tint"></span>
-                  </a>
-                  <a class="navbar-brand" href="#">Old Skool Pool</a>
-                </div><!-- end navbar branding -->
-                <div class="collapse navbar-collapse">
-                  <ul class="nav navbar-nav">
-                    <li><a href="/">Guess the year of the NCAA men's basketball tournament</a></li>  <!-- add these links in -->
-                    <!-- <li><a href="/">About</a></li>
-                    <li><a href="/">Contact</a></li> -->
-                  </ul>
-                </div><!-- end navbar links -->
-              </div>
-            </nav>
+    <nav class="navbar navbar-default navbar-fixed-top navbar-inverse">
+      <div class="container-fluid">
+        <div class="navbar-header">
+          <a class="navbar-brand" href="#">
+            <span class="glyphicon glyphicon-tint"></span>
+          </a>
+          <a class="navbar-brand" href="#">Old Skool Pool</a>
+        </div><!-- end navbar branding -->
+        <div class="collapse navbar-collapse">
+          <ul class="nav navbar-nav">
+            <li><a href="/">Guess the year of the NCAA men's basketball tournament</a></li>  <!-- add these links in -->
+            <!-- <li><a href="/">About</a></li>
+            <li><a href="/">Contact</a></li> -->
+          </ul>
+        </div><!-- end navbar links -->
+      </div>
+    </nav>
 
-
-            <div class="container">
-              <!-- <header class="page-header">
-                <h1> Guess the year of the NCAA men's basketball tournament</h1>
-
-              </header> -->
-              <div class="row">
-              <article class="col-md-4">
-                  <!-- <h2> Years are between 1985-1997</h2> -->
-              </article>
-              <article class="col-md-4">
-                <form  action="localhost:9292/" method="POST">
-                  <div align="center">
-                  <br><br>
-                  <input id="year" type="text" size="25" placeholder="Guess The Year 1985-1997">
-                  <br><input id="guess" type="submit" value="Enter"><br>
-                  </div>
-                </form>
-              </div>
-              </article>
+    <div class="container">
+      <div class="row">
+        <div class="col-md-4">
+          <br><br><br><br>
+          <div class = "time" align="center">SHOT CLOCK
+          </div>
+          <div id = "clock" class ="time" align="center">
+          </div>
+        </div>
+        <div class="col-md-4">
+          <form  action="localhost:9292/" method="POST">
+            <div align="center">
+              <br><br>
+              <input id="year" class="btn btn-default" type="text" size="25" placeholder="Guess The Year 1985-1997">
+              <br><input id="guess" class="btn btn-default" type="submit" value="Enter"><br>
             </div>
+          </form>
+        </div>
+        <div class="col-md-4">
+          <br><br><br><br>
+          <input id="replay" class="btn btn-default" type="button" name="name" value="Play Again" onClick="window.location.reload()">
+        </div>
+      </div>
+    </div>
 
-              <div class="row">
-                <article class="col-md-4">
-                </article>
+    <div class="row">
+      <article class="col-md-4">
+      </article>
 
-                  <article class="col-md-4">
-                  <div class="results">  <!-- for the guess -->
+      <article class="col-md-4">
+        <div class="results">  <!-- for the guess -->
+      </article>
+        </div>
+    </div>
 
-                </article>
-                  </div>
-              </div>
+    <div class="container">
+    <section class="row" id="winner">
+      <article class="col-md-1" id="round-1">Round 1</article>
+      <article class="col-md-1" id="round-2">Round 2</article>
+      <article class="col-md-1" id="round-3">Sweet 16</article>
+      <article class="col-md-1" id="round-4">Elite 8</article>
+      <article class="col-md-1" id="round-5">Final 4</article>
+      <article class="col-md-2" id="round-6">Finals</article>
+      <article class="col-md-1" id="round-8">Final4</article>
+      <article class="col-md-1" id="round-9">Elite 8</article>
+      <article class="col-md-1" id="round-10">Sweet 16</article>
+      <article class="col-md-1" id="round-11">Round 2</article>
+      <article class="col-md-1" id="round-12">Round 1</article>
+    </section>
+    </div>
 
-<div class="container">
-<section class="row" id="winner">
-  <article class="col-md-1" id="round-1"></article>
-  <article class="col-md-1" id="round-2"></article>
-  <article class="col-md-1" id="round-3"></article>
-  <article class="col-md-1" id="round-4"></article>
-  <article class="col-md-1" id="round-5"></article>
-  <article class="col-md-2" id="round-6"></article>
-  <article class="col-md-1" id="round-8"></article>
-  <article class="col-md-1" id="round-9"></article>
-  <article class="col-md-1" id="round-10"></article>
-  <article class="col-md-1" id="round-11"></article>
-  <article class="col-md-1" id="round-12"></article>
-</section>
-</div>
-
-<!--<div id=""></div>  for the clock -->
 
     <div class="bracket row">
 
       <article class="col-md-8">
-
-
-    <div id="round1" class='round'></div>
-
-    <div id="round2" class='round'></div>
-
-    <div id="round3" class='round'></div>
-
-    <div id="round4" class='round'></div>
-
-    <div id="round5" class='round'></div>
-
-    <div id="round6" class='round'></div>
-
+        <div id="round1" class='round'></div>
+        <div id="round2" class='round'></div>
+        <div id="round3" class='round'></div>
+        <div id="round4" class='round'></div>
+        <div id="round5" class='round'></div>
+        <div id="round6" class='round'></div>
       </article>
     </div>
 
     <div class="row" id="updated-bracket">
     </div>
 
-</div>
-</div> <!-- end container -->
   <script type="text/javascript">
 
   $(document).ready(function() {

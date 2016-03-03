@@ -1,5 +1,27 @@
-var app = app || {};
+// // clock
+window.onload = function(){
 
+(function(){
+  var counter = 10;
+
+  setInterval(function() {
+    counter--;
+    if (counter >= 0) {
+      span = document.getElementById("clock");
+      span.innerHTML = counter;
+    }
+    if (counter === 0) {
+        $('.results').html('TIME HAS EXPIRED').addClass('buzzer');
+        clearInterval(counter);
+    }
+
+  }, 1000);
+})();
+}
+
+
+var app = app || {};  //or create new
+//find team by id
 app.findTeamById = function (id) {
   for (var team in app.teams) {
     if (app.teams[team].id == id) {
@@ -7,10 +29,10 @@ app.findTeamById = function (id) {
     }
   }
 }
-
+//pick a random year
 app.pickTeam = function (){
  $.ajax({
-   url: '/api/seasons/random',  //pick a random year
+   url: '/api/seasons/random',
    success: function(data){
 
      var round1 = [];
@@ -54,7 +76,7 @@ app.pickTeam = function (){
        var rounds = [round1, round2, round3, round4, round5, round6];
 
      }
-
+     //splits brackets into two
      for (var i = 0; i < rounds.length; i++) {
        var round = rounds[i];
 
@@ -86,16 +108,15 @@ app.pickTeam = function (){
  */
 app.placeTeamInBracket = function(bracketNumber, game, timeout) {
 
-  //### refcator:
 
   var html = $('<div><p>' + game.team_a + '</p><p>' + game.team_b + '</p></div>');
   html.addClass('game'); //add Class to games to refernce in styling
     html.hide(); //makes games not shift as other games come in
 
-    var timerCount = 660 * timeout;
+    var timerCount = 1200 * timeout;
 
     var localhtml = html;
-    setTimeout(function(){
+    setTimeout(function(){ //executes after waiting ...seconds
       $('#round-' + bracketNumber).append(localhtml);
       localhtml.fadeIn(2000);
     }, timerCount);

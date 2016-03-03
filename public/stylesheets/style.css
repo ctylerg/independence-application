@@ -9,6 +9,17 @@ body {
   background-size: 100% 100%;
   /*margin: 0 0 20px;*/
 }
+.time{
+  text-align: center;
+  color: red;
+  font-weight: bold;
+  font-size: 20;
+}
+/*#clock{
+  font-size: 20;
+  color: blue;
+}*/
+
 
 #year {
   margin: 20px;
@@ -23,37 +34,43 @@ body {
   width: 10%;
   margin-left: 10px;
 }
-/*#round-1{
-  display: inline-block;
-  float: left;
-  width: 10%;
-  margin-left: 10px;
+
+#round-1{
+  text-align: center;
+}
+#round-2{
+  text-align: center;
 }
 #round-3{
-  display: inline-block;
-  float: left;
-  width: 10%;
-  margin-left: 10px;
-}
-#round-3{
-  display: inline-block;
-  float: left;
-  width: 10%;
-  margin-left: 10px;
+    text-align: center;
 }
 #round-4{
-  display: inline-block;
-  float: left;
-  width: 10%;
-  margin-left: 10px;
+    text-align: center;
 }
 #round-5{
-  display: inline-block;
-  float: left;
-  width: 10%;
-  margin-left: 10px;
-}*/
-
+    text-align: center;
+}
+#round-6{
+    text-align: center;
+}
+#round-7{
+    text-align: center;
+}
+#round-8{
+    text-align: center;
+}
+#round-9{
+    text-align: center;
+}
+#round-10{
+    text-align: center;
+}
+#round-11{
+    text-align: center;
+}
+#round-12{
+    text-align: center;
+}
 
 .game{
   background-color: lightblue;
